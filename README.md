@@ -1,6 +1,6 @@
 ##Usage
 
-`
+```
 use Day4\Cloudinary\Cloudinary;
     ···
     public function fields(Request $request)
@@ -10,4 +10,4 @@ use Day4\Cloudinary\Cloudinary;
             Cloudinary::make( __('Banner'), 'banner')
         ]
     }
-`
+```
