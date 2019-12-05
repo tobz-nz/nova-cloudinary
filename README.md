@@ -1,4 +1,4 @@
-##Usage
+## Usage
 
 ```
 use Day4\Cloudinary\Cloudinary;
