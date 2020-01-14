@@ -4,7 +4,16 @@
             <div>
                 <div v-if="value">
                     <svg @click.prevent="zoom = !zoom" class="zoomer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12zM7 7V5h2v2h2v2H9v2H7V9H5V7h2z"/></svg>
-                    <img
+                    <CVideo v-if="value.indexOf('video/upload/') > -1"
+                        :id="field.name"
+                        :name="field.name"
+                        :src="value"
+                        class="block w-full card rounded cursor-pointer hoverableImage"
+                        :class="{zoom}"
+                        :title="zoom ? 'Zoom out' : 'Change Video'"
+                        @click.prevent="zoom ? zoom = false : openMediaLibrary()"></CVideo>
+                    <CImage
+                        v-else
                         :id="field.name"
                         :name="field.name"
                         :src="value"
@@ -18,7 +27,7 @@
                 </div>
                 <button v-else
                     @click.prevent="openMediaLibrary"
-                    class="m-4 form-file-btn btn btn-default btn-primary select-none">Choose Image</button>
+                    class="m-4 form-file-btn btn btn-default btn-primary select-none">Select</button>
             </div>
         </template>
     </default-field>
@@ -26,6 +35,8 @@
 
 <script>
 import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import CVideo from './Video.vue'
+import CImage from './Image.vue'
 
 export default {
     mixins: [FormField, HandlesValidationErrors],
@@ -80,6 +91,7 @@ export default {
             })
         }
     },
+    components: { CVideo, CImage },
     mounted() {
         if (document.getElementById('cloudinary-script')) return; // was already loaded
         var scriptTag = document.createElement("script")
@@ -102,10 +114,10 @@ export default {
 
     &.zoom {
         transition: .4s;
-        position: absolute;
+        position: fixed;
         width: 100%;
         left: 0;
-        top: -100px;
+        top: 0;
         height: 600px;
         background: rgba(255,255,255,0.8);
 
