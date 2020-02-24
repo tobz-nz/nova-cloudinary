@@ -72,7 +72,7 @@ export default {
         },
         update(val) {
             if (val.indexOf('image/upload/') > -1)
-                val = val.replace(/image\/upload\/(v\d+|f_auto[^\/]*)\//, 'image/upload/f_auto,c_limit,q_auto:best,w_480/')
+                val = val.replace(/image\/upload\/(\w_[^\/]*\/)?(v\d+\/)?/, 'image/upload/f_auto,c_limit,w_600/$2')
             this.$emit('input', val)
         },
         openMediaLibrary() {
