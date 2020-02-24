@@ -36,7 +36,7 @@ class Cloudinary extends Field
      */
     public function apiKey(string $apiKey = '')
     {
-        return $this->withMeta(['apiKey' => env('CLOUDINARY_API_KEY', $apiKey)]);
+        return $this->withMeta(['apiKey' => $apiKey]);
     }
 
     /**
@@ -47,6 +47,6 @@ class Cloudinary extends Field
      */
     public function cloudName(string $cloudName = '')
     {
-        return $this->withMeta(['cloudName' => env('CLOUDINARY_CLOUD_NAME', $cloudName)]);
+        return $this->withMeta(['cloudName' => $cloudName]);
     }
 }
