@@ -81,7 +81,7 @@ export default {
             window.cloudinary.openMediaLibrary({
                 cloud_name: this.field.cloudName,
                 api_key: this.field.apiKey,
-                multiple: !!this.field.allow_multiple
+                multiple: !!this.field.multiple
             }, {
                 insertHandler: ({assets}) => {
                 if (!assets || !assets.length) return

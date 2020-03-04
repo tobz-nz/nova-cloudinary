@@ -1,3 +1,11 @@
+# Nova Cloudinary Field
+
+Use to upload, browse and select resources from cloudinary.
+
+The value stored contains the following settings: `f_auto,c_limit,w_600`, which you can replace with what ever settings you need when using the image.
+
+**Multiple** images are seperated with `;` so can be stored in a normal text field.
+
 ## Setup
 
 .env
@@ -18,7 +26,9 @@ use Day4\Cloudinary\Cloudinary;
     {
         return [
             ···
-            Cloudinary::make( __('Banner'), 'banner')
+            Cloudinary::make( __('Banner'), 'banner'),
+            Cloudinary::make( __('Images'), 'images')
+                ->allowMultiple(true) // Select multiple
         ]
     }
 ```

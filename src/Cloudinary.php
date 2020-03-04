@@ -49,4 +49,15 @@ class Cloudinary extends Field
     {
         return $this->withMeta(['cloudName' => $cloudName]);
     }
+
+    /**
+     * Set the field to allow selecting multiple images
+     *
+     * @param boolean $multiple
+     * @return $this
+     */
+    public function allowMultiple(boolean $multiple)
+    {
+        return $this->withMeta(['multiple' => $multiple]);
+    }
 }
