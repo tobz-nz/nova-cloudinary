@@ -24,8 +24,8 @@ class Cloudinary extends Field
     public function __construct($name, $attribute = null, callable $resolveCallback = null) {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->withMeta(['apiKey' => config('cloudinary.app_key')]);
-        $this->withMeta(['cloudName' => env('cloudinary.cloud_name')]);
+        $this->withMeta(['apiKey' => config('nova.cloudinary_api_key')]);
+        $this->withMeta(['cloudName' => config('nova.cloudinary_cloud_name')]);
     }
 
     /**

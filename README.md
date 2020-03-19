@@ -15,6 +15,13 @@ CLOUDINARY_API_KEY=
 ```
 
 
+And then in your `config/nova.php` file add:
+```
+'cloudinary_api_key' => env('CLOUDINARY_API_KEY'),
+'cloudinary_cloud_name' => env('CLOUDINARY_CLOUD_NAME')
+```
+
+
 ## Usage
 
 In Nova Resource:
