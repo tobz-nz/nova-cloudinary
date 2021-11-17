@@ -53,7 +53,7 @@ class CloudinaryField extends Field
      */
     public function apiKey(string $apiKey = '')
     {
-        return $this->withMeta(['apiKey' => $apiKey]);
+        return $this->withMeta(compact('apiKey'));
     }
 
     /**
@@ -64,17 +64,22 @@ class CloudinaryField extends Field
      */
     public function cloudName(string $cloudName = '')
     {
-        return $this->withMeta(['cloudName' => $cloudName]);
+        return $this->withMeta(compact('cloudName'));
     }
 
     /**
-     * Set the field to allow selecting multiple images
+     * Set the default path & type
      *
-     * @param boolean $multiple
+     * @param array $sources
      * @return $this
      */
-    public function allowMultiple(boolean $multiple)
+    public function setFolder(string $path, string $resource_type = null)
     {
-        return $this->withMeta(['multiple' => $multiple]);
+        return $this->withMeta([
+            'path' => array_filter([
+                'path' => $path,
+                'resource_type' => $resource_type,
+            ])
+        ]);
     }
 }

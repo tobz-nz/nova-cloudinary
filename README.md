@@ -1,10 +1,8 @@
 # Nova Cloudinary Field
 
-This is based on https://bitbucket.org/day4/nova-cloudinary
+This package was originally forked form https://bitbucket.org/day4/nova-cloudinary but has diverged somewhat and is NOT backwards compatible.
 
 Use to upload, browse and select resources from cloudinary.
-
-**Multiple** images are seperated with `;` so can be stored in a normal text field.
 
 ## Setup
 
@@ -30,7 +28,7 @@ In Nova Resource:
             ···
             CloudinaryField::make( __('Banner'), 'banner'),
             CloudinaryField::make( __('Images'), 'images')
-                ->allowMultiple(true) // Select multiple
+                ->setFolder('folderName', 'resource_type) // set a default folder and optionally filter by file type 
         ]
     }
 ```
