@@ -1,10 +1,10 @@
 <?php
 
-namespace Day4\Cloudinary;
+namespace Techful\CloudinaryField;
 
-use Laravel\Nova\Nova;
-use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
 
 class FieldServiceProvider extends ServiceProvider
 {
@@ -15,9 +15,18 @@ class FieldServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/cloudinary-field.php',
+            'cloudinary-field'
+        );
+
+        $this->publishes([
+            __DIR__ . '/../config/cloudinary.php' => config_path('cloudinary-field.php'),
+        ]);
+
         Nova::serving(function (ServingNova $event) {
-            Nova::script('cloudinary', __DIR__.'/../dist/js/field.js');
-            Nova::style('cloudinary', __DIR__.'/../dist/css/field.css');
+            Nova::script('cloudinary-field', __DIR__ . '/../dist/js/field.js');
+            Nova::style('cloudinary-field', __DIR__ . '/../dist/css/field.css');
         });
     }
 

@@ -1,5 +1,5 @@
 {
-    "name": "day4/cloudinary",
+    "name": "techful/cloudinary-field",
     "description": "A Laravel Nova field.",
     "keywords": [
         "laravel",
@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Day4\\Cloudinary\\": "src/"
+            "Techful\\CloudinaryField\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Day4\\Cloudinary\\FieldServiceProvider"
+                "Techful\\CloudinaryField\\FieldServiceProvider"
             ]
         }
     },

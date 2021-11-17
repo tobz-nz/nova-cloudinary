@@ -1,8 +1,8 @@
 # Nova Cloudinary Field
 
-Use to upload, browse and select resources from cloudinary.
+This is based on https://bitbucket.org/day4/nova-cloudinary
 
-The value stored contains the following settings: `f_auto,c_limit,w_600`, which you can replace with what ever settings you need when using the image.
+Use to upload, browse and select resources from cloudinary.
 
 **Multiple** images are seperated with `;` so can be stored in a normal text field.
 
@@ -15,27 +15,24 @@ CLOUDINARY_API_KEY=
 ```
 
 
-And then in your `config/nova.php` file add:
-```
-'cloudinary_api_key' => env('CLOUDINARY_API_KEY'),
-'cloudinary_cloud_name' => env('CLOUDINARY_CLOUD_NAME')
-```
-
-
 ## Usage
 
 In Nova Resource:
 
 ```
-use Day4\Cloudinary\Cloudinary;
+    use Techful\CloudinaryField\CloudinaryField;
+    
     ···
+    
     public function fields(Request $request)
     {
         return [
             ···
-            Cloudinary::make( __('Banner'), 'banner'),
-            Cloudinary::make( __('Images'), 'images')
+            CloudinaryField::make( __('Banner'), 'banner'),
+            CloudinaryField::make( __('Images'), 'images')
                 ->allowMultiple(true) // Select multiple
         ]
     }
 ```
+
+The value should be stored in a json field.
