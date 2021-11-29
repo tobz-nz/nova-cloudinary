@@ -56,14 +56,14 @@ export default {
          * Set the initial, internal value for the field.
          */
         setInitialValue() {
-            this.value = this.field.value || ''
+            this.value = this.field.value || null
         },
 
         /**
          * Fill the given FormData object with the field's internal value.
          */
         fill(formData) {
-            formData.append(this.field.attribute, JSON.stringify(this.value || ''))
+            formData.append(this.field.attribute, JSON.stringify(this.value || null))
         },
 
         /**
@@ -74,7 +74,7 @@ export default {
         },
 
         reset() {
-            this.$emit('input', this.value = '')
+            this.$emit('input', this.value = null)
         },
 
         update(value) {
