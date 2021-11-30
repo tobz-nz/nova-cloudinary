@@ -33,16 +33,17 @@ class CloudinaryField extends Field
     /**
      * Hydrate the given attribute on the model based on the incoming request.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
-     * @param object $model
-     * @return mixed
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  string  $requestAttribute
+     * @param  object  $model
+     * @param  string  $attribute
+     * @return void
      */
-    public function fill(NovaRequest $request, $model)
+    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        // decode the json string before saving it it (as json again, lol)
-        $request->replace(['content' => json_decode($request->get('content'))]);
-
-        return $this->fillInto($request, $model, $this->attribute);
+        if ($request->exists($requestAttribute)) {
+            $model->{$attribute} = json_decode($request[$requestAttribute], true);
+        }
     }
 
     /**
@@ -81,5 +82,19 @@ class CloudinaryField extends Field
                 'resource_type' => $resource_type,
             ])
         ]);
+    }
+
+    public function jsonSerialize()
+    {
+        $request = app(NovaRequest::class);
+
+        if ($request->get($this->attribute)) {
+            return array_merge(
+                parent::jsonSerialize(),
+                [$this->attribute => json_decode($request->get($this->attribute), true)]
+            );
+        }
+
+        return parent::jsonSerialize();
     }
 }
