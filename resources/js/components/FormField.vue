@@ -1,5 +1,5 @@
 <template>
-    <default-field :field="field" :errors="errors">
+    <default-field :field="field" :errors="errors" :show-help-text="showHelpText">
         <template slot="field">
             <div class="cloudinary-field-container" v-if="value">
                 <svg v-if="field.nullable" @click.prevent="reset" class="absolute inline-block p-1 text-sm text-white bg-danger rounded-full cursor-pointer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 20 20" version="1.1">
