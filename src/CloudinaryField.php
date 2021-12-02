@@ -83,18 +83,4 @@ class CloudinaryField extends Field
             ])
         ]);
     }
-
-    public function jsonSerialize()
-    {
-        $request = app(NovaRequest::class);
-
-        if ($request->get($this->attribute)) {
-            return array_merge(
-                parent::jsonSerialize(),
-                [$this->attribute => json_decode($request->get($this->attribute), true)]
-            );
-        }
-
-        return parent::jsonSerialize();
-    }
 }
