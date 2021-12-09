@@ -3,45 +3,19 @@
     height: 200px;
     min-width: 200px;
     max-width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     background: #e4e4e4;
 
-    &.zoom {
-        transition: .4s;
-        position: fixed;
-        width: 100%;
-        left: 0;
-        top: 0;
-        height: 600px;
-        background: rgba(255, 255, 255, 0.8);
-
-        + .img-placeholder {
-            display: block;
-            height: 200px;
-            width: 200px;
-        }
+    &.small {
+        max-height: 100px;
     }
-}
-
-.zoomer {
-    float: left;
-    width: 1rem;
-    margin: 0.5rem;
-    background: var(--primary-dark);
-    fill: #fff;
-    box-shadow: 0 0 0 4px var(--primary-dark);
-    cursor: pointer;
 }
 
 .cloudinary-video {
     width: auto;
-    min-height: 320px;
+    height: 320px;
     aspect-ratio: 16/9;
-
-    &[poster] {
-        object-fit: cover;
-    }
 }
 
 .cloudinary-field-container {
