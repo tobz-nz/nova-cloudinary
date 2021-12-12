@@ -7,7 +7,17 @@
                     <polygon fill="currentColor" fill-rule="evenodd" id="Combined-Shape" points="10 8.58578644 2.92893219 1.51471863 1.51471863 2.92893219 8.58578644 10 1.51471863 17.0710678 2.92893219 18.4852814 10 11.4142136 17.0710678 18.4852814 18.4852814 17.0710678 11.4142136 10 18.4852814 2.92893219 17.0710678 1.51471863 10 8.58578644"></polygon>
                 </svg>
 
-                <CVideo v-if="value.resource_type === 'video'"
+                <CAudio
+                    v-if="field.value.is_audio === true"
+                    :id="field.name"
+                    :name="field.name"
+                    :src="field.value.url"
+                    :width="field.value.width"
+                    :height="field.value.height"
+                    class="block w-full card rounded cursor-pointer hoverableImage cloudinary-audio"
+                    @click.prevent="openMediaLibrary"
+                    ></CAudio>
+                <CVideo v-else-if="value.resource_type === 'video'"
                     :id="field.name"
                     :name="field.name"
                     :src="value.url"
@@ -23,9 +33,8 @@
                     class="block w-full card rounded cursor-pointer hoverableImage"
                     @click.prevent="openMediaLibrary"
                     alt="Cloudinary image url"></CImage>
-                <div class="img-placeholder"></div>
             </div>
-            <button
+            <button v-if="!field.readonly"
                 @click.prevent="openMediaLibrary"
                 class="mt-4 form-file-btn btn btn-default btn-primary flex items-center select-none" style="gap: 0.5rem">
                 <svg width="25" height="15" viewBox="0 0 122 80" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -43,12 +52,13 @@
 
 <script>
 import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import CAudio from './Audio.vue'
 import CVideo from './Video.vue'
 import CImage from './Image.vue'
 
 export default {
     mixins: [FormField, HandlesValidationErrors],
-    components: { CVideo, CImage },
+    components: { CVideo, CAudio, CImage },
     props: ['resourceName', 'resourceId', 'field'],
 
     methods: {
